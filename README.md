@@ -1,6 +1,6 @@
 =============
 ## 参考文档
-1. [Koa2 + React + Eslint + Webpack热加载部署方案]("http://www.nekomiao.me/2017/05/23/koa2-react-webpack-deployment/")
+1. [Koa2 + React + Eslint + Webpack热加载部署方案](http://www.nekomiao.me/2017/05/23/koa2-react-webpack-deployment/)
 2. [Simple Koa2 - React - Redux boilerplate]("https://github.com/princeV/koa2-react-redux-webpack-boilerplate/blob/master/docs/project-setup.md")
 3. [在React+Babel+Webpack环境中使用ESLint]("http://le0zh.github.io/2016/06/21/eslint+in+react+babel+webpack")
 4. [使用webpack、babel、react、antdesign配置单页面应用开发环境]("http://www.chardlau.com/2017/04/26/config-of-webpack-babel-react-antd/")
