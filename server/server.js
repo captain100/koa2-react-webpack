@@ -3,6 +3,10 @@ import views from 'koa-views'
 import path from 'path'
 import convert from 'koa-convert'
 
+import Router from 'koa-router'
+// 配置路由
+import indexRouter from './routers/index'
+
 // webpack react 热更新
 import webpack from 'webpack'
 import webpackConfig from '../webpack.config.js'
@@ -40,8 +44,9 @@ app.use(async (ctx, next) => {
   console.log(`${ctx.method} ${ctx.url} - ${ms}ms`)
 })
 
-app.use('/', ctx => ctx.render('index.html'))
-app.use('/pages', ctx => ctx.render('cache.html'))
+app.use(indexRouter.routes()).use(indexRouter.allowedMethods())
+// app.use(ctx => ctx.render('index.html'))
+// app.use('/pages', ctx => ctx.render('cache.html'))
 
 const server = app.listen(3000, () => console.log('系统启动， 端口 ·：3000'))
 
