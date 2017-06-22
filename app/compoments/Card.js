@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Route, Link } from 'react-router-dom'
 
 const Home = () => <div>home</div>
 
-const About = () => <div>About</div>
+const About = () => <div>About2222</div>
 
 const Topics = () => <div>Topics</div>
 

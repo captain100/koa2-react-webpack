@@ -1,11 +1,21 @@
 const webpack = require('webpack')
+const path = require('path')
 
 module.exports = {
+  context: path.resolve('./app'),
   devtool: 'eval-source-map',
-  entry: `${__dirname}/app/main.js`,
+  entry: {
+    index: [
+      'webpack-hot-middleware/client?path=/__webpack_hmr&timeout=2000&reload=true',
+      'babel-polyfill',
+      './main.js'
+    ]
+  },
   output: {
-    path: `${__dirname}/build`,
-    filename: 'bundle.js'
+    filename: 'bundle.js',
+    publicPath: 'http://localhost:3000/build/',
+    // webpack-dev-server伺服的文件是相对publicPath这个路径的
+    chunkFilename: '[name].chunk.js'
   },
   resolve: {
     // 定义了解析模块路径时的配置，常用的就是extensions，可以用来指定模块的后缀，这样在引入模块时就不需要写后缀了，会自动补全
@@ -13,12 +23,12 @@ module.exports = {
   },
   module: {
     loaders: [
-      {
-        test: /\.js$/,
-        enforce: 'pre',
-        exclude: /node_modules/,
-        loader: ['eslint-loader']
-      },
+      // {
+      //   test: /\.js$/,
+      //   enforce: 'pre',
+      //   exclude: /node_modules/,
+      //   loader: ['eslint-loader']
+      // },
       {
         test: /\.(jsx|js)$/,
         exclude: /node_modules/,
@@ -31,14 +41,22 @@ module.exports = {
         }
       },
       {
+        test: /\.js$/,
+        loader: 'babel',
+        query: {
+          presets: ['es2015', 'stage-0']
+        },
+        include: '/app'
+      },
+      {
         test: /\.css$/,
         use: ['style-loader', 'css-loader']
+      },
+      {
+        test: /\.(jpg|png)$/,
+        loader: 'url?limit=8192'
       }
     ]
-  },
-  devServer: {
-    hot: true,
-    inline: true
   },
   plugins: [
     new webpack.optimize.OccurrenceOrderPlugin(),
