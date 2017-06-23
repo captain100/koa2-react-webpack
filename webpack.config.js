@@ -4,6 +4,7 @@ const path = require('path')
 module.exports = {
   context: path.resolve('./app'),
   devtool: 'eval-source-map',
+  
   entry: {
     index: [
       'webpack-hot-middleware/client?path=/__webpack_hmr&timeout=2000&reload=true',
